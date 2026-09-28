@@ -1,0 +1,479 @@
+{
+  "equipment_list": [
+    "EVC-22",
+    "TX-24",
+    "SC-3",
+    "SC-7",
+    "CH-12"
+  ],
+  "known_equipment": [],
+  "knowledge_base": [
+    {
+      "id": "D1",
+      "equipment": "EVC-22",
+      "category": "Electric vehicle charging station (EVSE)",
+      "diagram": "evse",
+      "title": "Resolving the residual current device (RCD) trip on the EVC-22 charging station",
+      "tags": [
+        "error",
+        "RCD",
+        "ground fault",
+        "diagnostics",
+        "electrical safety"
+      ],
+      "expert": {
+        "name": "Nadia Ferrand",
+        "role": "Certified EVSE technician"
+      },
+      "session_date": "17/01/2025",
+      "steps": [
+        {
+          "n": 1,
+          "title": "Reading the error code",
+          "description": "The red indicator blinking 3 times signals a trip of the integrated type B residual current device (RCD), usually caused by a leakage current detected on the cable or the vehicle.",
+          "video_ts": "00:36"
+        },
+        {
+          "n": 2,
+          "title": "Isolating the source",
+          "description": "Cut the upstream power at the dedicated breaker, disconnect the vehicle cable, and inspect the Type 2 connector for moisture or oxidation.",
+          "video_ts": "02:10"
+        },
+        {
+          "n": 3,
+          "title": "Cable insulation test",
+          "description": "Measure the charging cable's insulation resistance with a megohmmeter between phase and earth (must stay above 1 MΩ) and replace the cable if the value is lower.",
+          "video_ts": "04:15"
+        },
+        {
+          "n": 4,
+          "title": "Earth connection check",
+          "description": "Use an earth resistance tester to verify the anchor point's earth resistance does not exceed 100 ohms — otherwise the RCD can trip intermittently even without a real fault.",
+          "video_ts": "06:40"
+        },
+        {
+          "n": 5,
+          "title": "Reset and charge test",
+          "description": "Reset the RCD from the electronic enclosure, start a low-power (6 A) test charging session for 5 minutes, and confirm there is no further trip before returning to full power.",
+          "video_ts": "08:55"
+        }
+      ],
+      "has_real_video": false
+    },
+    {
+      "id": "E1",
+      "equipment": "TX-24",
+      "category": "Domestic heating (condensing boiler)",
+      "diagram": "boiler",
+      "title": "Resolving fault code F.28 — TX-24 boiler failing to ignite",
+      "tags": [
+        "error",
+        "F.28",
+        "ignition",
+        "gas",
+        "diagnostics"
+      ],
+      "expert": {
+        "name": "Julien Rocca",
+        "role": "Senior heating technician"
+      },
+      "session_date": "11/02/2025",
+      "steps": [
+        {
+          "n": 1,
+          "title": "Reading the error code",
+          "description": "Code F.28 indicates an ignition failure after 3 successive attempts, usually caused by insufficient gas supply or a fouled ignition electrode.",
+          "video_ts": "00:40"
+        },
+        {
+          "n": 2,
+          "title": "Checking the gas supply",
+          "description": "Verify that the main gas valve is fully open and that the dynamic pressure at the meter outlet is between 18 and 25 mbar.",
+          "video_ts": "02:20"
+        },
+        {
+          "n": 3,
+          "title": "Inspecting the electrode",
+          "description": "Remove the inspection hatch, take out the ignition/ionization electrode, clean it with a soft wire brush, and check the tip gap (3.5 mm).",
+          "video_ts": "04:30"
+        },
+        {
+          "n": 4,
+          "title": "Checking the condensate trap",
+          "description": "Verify that the condensate drain trap is not blocked or unprimed: a blockage can trigger a safety lockout that prevents ignition.",
+          "video_ts": "06:50"
+        },
+        {
+          "n": 5,
+          "title": "Reset and combustion test",
+          "description": "Reset the boiler from the reset button, run an ignition cycle, and use the combustion analyzer to confirm the CO2 level stays within the manufacturer's range before handing back to the occupant.",
+          "video_ts": "09:05"
+        }
+      ],
+      "has_real_video": false
+    },
+    {
+      "id": "F1",
+      "equipment": "SC-3",
+      "category": "Micro-mobility (shared electric scooter)",
+      "diagram": "escooter",
+      "title": "Replacing the faulty IoT locking module on the SC-3 scooter",
+      "tags": [
+        "IoT module",
+        "locking",
+        "replacement",
+        "fault",
+        "fleet"
+      ],
+      "expert": {
+        "name": "Amélie Trân",
+        "role": "Micro-mobility fleet maintenance expert"
+      },
+      "session_date": "05/03/2025",
+      "steps": [
+        {
+          "n": 1,
+          "title": "Identifying the fault",
+          "description": "A scooter that stays locked after a confirmed unlock in the app usually points to a frozen IoT module rather than a mechanical issue with the rear wheel brake.",
+          "video_ts": "00:45"
+        },
+        {
+          "n": 2,
+          "title": "Powering down",
+          "description": "Remove the removable battery from the compartment under the deck to cut power to the module before working on the electronics.",
+          "video_ts": "02:05"
+        },
+        {
+          "n": 3,
+          "title": "Unplugging the IoT module",
+          "description": "Unclip the control housing cover, disconnect the IoT module connector (GPS/4G/Bluetooth), then the wheel-lock servo motor's connector.",
+          "video_ts": "03:50"
+        },
+        {
+          "n": 4,
+          "title": "Installing the new module",
+          "description": "Reconnect the new module in the same order, reclip the cover, and confirm the status light turns solid blue, indicating successful pairing with the fleet server.",
+          "video_ts": "05:30"
+        },
+        {
+          "n": 5,
+          "title": "End-to-end test",
+          "description": "Reinsert the battery, force a lock/unlock cycle from the technician app, and confirm the rear wheel locks properly.",
+          "video_ts": "07:15"
+        }
+      ],
+      "has_real_video": false
+    },
+    {
+      "id": "F2",
+      "equipment": "SC-3",
+      "category": "Micro-mobility (shared electric scooter)",
+      "diagram": "escooter",
+      "title": "Diagnosing and repairing the front disc brake on the SC-3 scooter",
+      "tags": [
+        "brake",
+        "pads",
+        "disc",
+        "wear",
+        "diagnostics"
+      ],
+      "expert": {
+        "name": "Amélie Trân",
+        "role": "Micro-mobility fleet maintenance expert"
+      },
+      "session_date": "22/03/2025",
+      "steps": [
+        {
+          "n": 1,
+          "title": "Diagnosing the symptom",
+          "description": "Longer stopping distances or a metallic scraping noise when braking usually indicates worn pads or a warped disc, rather than an electronic issue.",
+          "video_ts": "00:30"
+        },
+        {
+          "n": 2,
+          "title": "Checking pad thickness",
+          "description": "Remove the front wheel and check the disc brake pad thickness: below 1 mm, they must be replaced before the scooter goes back into service.",
+          "video_ts": "02:15"
+        },
+        {
+          "n": 3,
+          "title": "Checking disc warp",
+          "description": "Spin the wheel by hand and observe the gap between the disc and the pads over a full rotation; warp exceeding 0.3 mm requires disc replacement.",
+          "video_ts": "04:00"
+        },
+        {
+          "n": 4,
+          "title": "Replacing the pads",
+          "description": "Remove the worn pads, clean the caliper with compressed air, insert the new pads, and reset the caliper pistons with a C-clamp before reassembling the wheel.",
+          "video_ts": "06:10"
+        },
+        {
+          "n": 5,
+          "title": "Bleeding and brake test",
+          "description": "Bleed the hydraulic circuit if the lever feels spongy, then test braking at low speed over 5 meters before returning the scooter to the fleet.",
+          "video_ts": "08:20"
+        }
+      ],
+      "has_real_video": false
+    },
+    {
+      "id": "G1",
+      "equipment": "SC-7",
+      "category": "Micro-mobility (shared electric scooter)",
+      "diagram": "escooter",
+      "title": "Replacing the main battery on the SC-7 scooter",
+      "tags": [
+        "battery",
+        "replacement",
+        "range",
+        "electrical fault",
+        "fleet"
+      ],
+      "expert": {
+        "name": "Amélie Trân",
+        "role": "Micro-mobility fleet maintenance expert"
+      },
+      "session_date": "10/04/2025",
+      "steps": [
+        {
+          "n": 1,
+          "title": "Diagnosing the fault",
+          "description": "A sharply dropping range, or a scooter that won't power on at all after a full charge, usually points to a failing battery cell rather than a motor or controller issue.",
+          "video_ts": "00:40"
+        },
+        {
+          "n": 2,
+          "title": "Making it safe",
+          "description": "Turn off the main switch under the deck and disconnect the main battery connector before any handling, to avoid an accidental short circuit.",
+          "video_ts": "02:10"
+        },
+        {
+          "n": 3,
+          "title": "Removing the battery tray",
+          "description": "Remove the lower cover screws with a T20 Torx screwdriver, then carefully pull the battery tray out of its housing without pulling on the cables.",
+          "video_ts": "04:00"
+        },
+        {
+          "n": 4,
+          "title": "Replacing the battery",
+          "description": "Disconnect the old battery, install the new one in the same orientation, and confirm the connector is properly seated before closing the cover.",
+          "video_ts": "06:15"
+        },
+        {
+          "n": 5,
+          "title": "Charge test and calibration",
+          "description": "Reconnect the main switch, start a full charge, and check in the technician app that the displayed range percentage matches a new battery before returning it to the fleet.",
+          "video_ts": "08:30"
+        }
+      ],
+      "has_real_video": false
+    },
+    {
+      "id": "CH1",
+      "equipment": "CH-12",
+      "category": "Industrial cooling (compact workshop chiller)",
+      "diagram": "chiller",
+      "title": "Replacing the CH-12 chiller after an overheating alarm",
+      "tags": [
+        "overheating",
+        "replacement",
+        "cooling",
+        "installation",
+        "fault"
+      ],
+      "expert": {
+        "name": "Karim Belaïd",
+        "role": "Industrial maintenance technician"
+      },
+      "session_date": "14/08/2026",
+      "steps": [
+        {
+          "n": 1,
+          "title": "Receiving and positioning",
+          "description": "A recurring overheating alarm on the machine usually points to an end-of-life chiller rather than a setpoint issue: unbox the replacement CH-12 chiller and position it next to the machine, where the old unit stood.",
+          "video_ts": "00:02"
+        },
+        {
+          "n": 2,
+          "title": "Connecting the cooling circuit",
+          "description": "Connect the coolant circulation hose to the quick coupling at the top, then plug the circuit connector into the base at the foot of the chiller — make sure both clips engage before letting go.",
+          "video_ts": "00:12"
+        },
+        {
+          "n": 3,
+          "title": "Electrical connection",
+          "description": "Plug the chiller's power cord into the machine's dedicated outlet, with the cable laid out without excess tension so the connector isn't strained on startup.",
+          "video_ts": "00:33"
+        },
+        {
+          "n": 4,
+          "title": "Connecting the control probe",
+          "description": "Connect the temperature probe cable near the fan, then route the cable slack away from the blades to avoid any rubbing once the chiller is powered.",
+          "video_ts": "00:52"
+        },
+        {
+          "n": 5,
+          "title": "Check before powering back on",
+          "description": "Visually confirm that both fluid couplings and both electrical connectors are properly engaged and that the cables are clear of the fan before restoring power to the machine.",
+          "video_ts": "01:10"
+        }
+      ],
+      "has_real_video": true,
+      "parts": [
+        {
+          "label": "Cooling fluid reservoir",
+          "slug": "reservoir",
+          "video_ts": "00:02",
+          "step_n": 1,
+          "center_x": 515,
+          "center_y": 430,
+          "radius": 230
+        },
+        {
+          "label": "Quick fluid coupling",
+          "slug": "raccord",
+          "video_ts": "00:12",
+          "step_n": 2,
+          "center_x": 610,
+          "center_y": 140,
+          "radius": 50
+        },
+        {
+          "label": "Power connector",
+          "slug": "connecteur",
+          "video_ts": "00:33",
+          "step_n": 3,
+          "center_x": 555,
+          "center_y": 605,
+          "radius": 55
+        },
+        {
+          "label": "Fan and control probe",
+          "slug": "ventilateur",
+          "video_ts": "00:52",
+          "step_n": 4,
+          "center_x": 850,
+          "center_y": 605,
+          "radius": 105
+        }
+      ]
+    },
+    {
+      "id": "IC1",
+      "equipment": "Instant Cooker",
+      "category": "Kitchen appliance (electric pressure cooker)",
+      "diagram": "instant_cooker",
+      "equipment_description": "a stainless steel electric pressure cooker with a black lid and control panel",
+      "title": "Cleaning the sealing ring on the Instant Cooker",
+      "tags": [
+        "sealing ring",
+        "cleaning",
+        "maintenance",
+        "odor",
+        "pressure cooker"
+      ],
+      "expert": {
+        "name": "Léa Fontaine",
+        "role": "Small appliance repair specialist"
+      },
+      "session_date": "27/08/2026",
+      "steps": [
+        {
+          "n": 1,
+          "title": "Unplugging the cooker",
+          "description": "Unplug the power cord from the cooker's own inlet socket on its body before touching the lid or the sealing ring — never perform maintenance on a powered unit, even between cooking cycles.",
+          "video_ts": "00:05",
+          "visual_state": "the power cord unplugged from the pressure cooker's own power inlet socket on its body, a hand holding the cord connector next to the empty socket"
+        },
+        {
+          "n": 2,
+          "title": "Opening the lid",
+          "description": "Turn the lid handle toward the 'Open' marking printed on the lid until it releases from the base, then lift the lid away.",
+          "video_ts": "00:15",
+          "visual_state": "a pressure cooker with its lid off, the rubber sealing ring clearly visible inside",
+          "auto_detect": false
+        },
+        {
+          "n": 3,
+          "title": "Removing the sealing ring",
+          "description": "The sealing ring sits in a groove running around the inside of the lid — grip it at any point along the rim and pull it free, it isn't fastened or glued in place.",
+          "video_ts": "00:25",
+          "visual_state": "a rubber sealing ring lifted completely out of the lid, no longer seated in its groove",
+          "auto_detect": false
+        },
+        {
+          "n": 4,
+          "title": "Washing the sealing ring",
+          "description": "Rinse the ring under running water and scrub it with a small brush (an old toothbrush works well) to remove trapped food residue or lingering odors, especially on the inner groove side.",
+          "video_ts": "00:35",
+          "visual_state": "water actively flowing from a faucet onto a rubber sealing ring in a sink"
+        },
+        {
+          "n": 5,
+          "title": "Refitting the sealing ring",
+          "description": "Press the ring back into the lid's groove all the way around, checking that it sits flat with no twisted or bunched sections before closing the lid again.",
+          "video_ts": "00:45",
+          "visual_state": "a rubber sealing ring fitted back snugly into the groove of an open pressure cooker lid",
+          "auto_detect": false
+        }
+      ],
+      "has_real_video": false,
+      "equipment_photo": "equipment.jpg",
+      "parts": [
+        {
+          "label": "Power cord socket",
+          "slug": "inlet",
+          "video_ts": "00:05",
+          "step_n": 1,
+          "center_x": 2291,
+          "center_y": 2023,
+          "radius": 350,
+          "shape": "circle"
+        },
+        {
+          "label": "Lid open marking",
+          "slug": "openlabel",
+          "video_ts": "00:15",
+          "step_n": 2,
+          "center_x": 2010,
+          "center_y": 2060,
+          "radius": 400,
+          "shape": "circle"
+        },
+        {
+          "label": "Sealing ring",
+          "slug": "ring-remove",
+          "video_ts": "00:25",
+          "step_n": 3,
+          "center_x": 1550,
+          "center_y": 979,
+          "radius": 306,
+          "shape": "arrow",
+          "angle": 90
+        },
+        {
+          "label": "Sealing ring",
+          "slug": "ring-wash",
+          "video_ts": "00:35",
+          "step_n": 4,
+          "center_x": 2535,
+          "center_y": 2970,
+          "radius": 350,
+          "shape": "arrow",
+          "angle": 260
+        },
+        {
+          "label": "Sealing ring",
+          "slug": "ring-refit",
+          "video_ts": "00:45",
+          "step_n": 5,
+          "center_x": 435,
+          "center_y": 1280,
+          "radius": 300,
+          "shape": "arrow",
+          "angle": 200
+        }
+      ]
+    }
+  ]
+}

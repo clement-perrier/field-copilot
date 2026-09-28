@@ -1,0 +1,71 @@
+# Démarre les 3 composants du prototype : base de données, backend, frontend.
+# Commande unique : `docker compose up --build` (voir README.md pour le détail,
+# notamment la commande séparée de seed après le premier démarrage).
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_DB: field_copilot
+      POSTGRES_USER: field_copilot
+      POSTGRES_PASSWORD: field_copilot
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # L'image Postgres officielle exécute automatiquement tout .sql présent
+      # dans /docker-entrypoint-initdb.d au tout premier démarrage du volume.
+      # C'est notre migration : pas d'outil de migration séparé à justifier.
+      - ./backend/migrations:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U field_copilot"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    env_file: .env
+    environment:
+      # Le backend doit joindre Postgres par le nom du service Docker ("db"),
+      # pas "localhost" — les conteneurs sont sur leur propre réseau. On
+      # surcharge ici la valeur de .env.example qui, elle, cible un usage hors
+      # Docker (backend lancé en local avec `uvicorn` pendant le développement).
+      DATABASE_URL: postgresql://field_copilot:field_copilot@db:5432/field_copilot
+    ports:
+      - "8000:8000"
+    volumes:
+      # Monte le code source pour que --reload (voir backend/Dockerfile) recharge
+      # à chaud pendant le développement, sans reconstruire l'image à chaque
+      # changement.
+      - ./backend:/app
+      # scripts/seed.py calcule le chemin de data/knowledge_base.json en remontant
+      # 3 dossiers depuis lui-même (backend/scripts/seed.py -> backend -> racine
+      # du repo -> data/). Hors Docker ça tombe naturellement sur la racine du
+      # repo ; dans le conteneur /app EST déjà la racine (backend/ y est monté
+      # directement), donc la même remontée tombe sur /. On monte donc data/ ici,
+      # en lecture seule, pour que le même code fonctionne sans changement dans
+      # les deux cas.
+      - ./data:/data:ro
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    environment:
+      # Voir vite.config.ts : à l'intérieur du réseau Docker, le backend se
+      # joint par le nom du service ("backend"), pas "localhost" — même
+      # raison que pour DATABASE_URL côté backend un peu plus haut.
+      VITE_BACKEND_URL: http://backend:8000
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      # Évite que le volume ci-dessus écrase le node_modules installé dans
+      # l'image par un node_modules vide (ou absent) venu de l'hôte.
+      - /app/node_modules
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:

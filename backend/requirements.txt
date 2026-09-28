@@ -1,0 +1,25 @@
+fastapi
+uvicorn[standard]
+anthropic
+psycopg[binary]
+pgvector
+sentence-transformers
+python-dotenv
+pydantic-settings
+# Mode live (voir LIVE_MODE_DECISIONS.md) : opencv-python-headless pour le
+# matching ORB (vision par ordinateur classique, localisation d'une pièce sur
+# la frame filmée) — "headless" parce que le backend n'a pas d'affichage, pas
+# besoin des bindings GUI d'OpenCV. Version fixée à 4.9 : les versions plus
+# récentes exigent numpy>=2. pillow pour décoder les images reçues, entraînée
+# transitivement par sentence-transformers mais listée en direct puisque
+# embeddings.py/part_locator.py en dépendent explicitement.
+opencv-python-headless==4.9.0.80
+pillow
+# numpy<2 explicitement épinglé, pas juste laissé à la résolution transitive :
+# le binaire compilé d'opencv-python-headless 4.9 attend l'ABI numpy 1.x —
+# sans ce pin, pip peut résoudre numpy 2.x (satisfait torch/sentence-
+# transformers, qui acceptent une plage plus large) et tout le module plante
+# au chargement ("numpy.core.multiarray failed to import"). Constaté deux fois
+# (environnement de test local, puis à nouveau en conteneur Docker) — pas une
+# hypothèse.
+numpy<2

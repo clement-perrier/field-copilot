@@ -1,0 +1,18 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Node / frontend
+node_modules/
+frontend/dist/
+
+# Postgres (si jamais un volume de données local est créé hors Docker)
+pgdata/
+
+# Local tooling / OS
+.claude/
+.DS_Store
